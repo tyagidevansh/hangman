@@ -1,6 +1,53 @@
 body {
+    background-color: #f8f5e3;
     background-size: 40px 40px;
     background-image:
-      linear-gradient(to right, #10c5e4 1px, transparent 1px),
-      linear-gradient(to bottom, #10c5e4 1px, transparent 1px);
+      linear-gradient(to right, #40e0d0 1px, transparent 1px),
+      linear-gradient(to bottom, #40e0d0 1px, transparent 1px);
   }
+
+.title {
+    font-family: "Indie Flower", Arial;
+    font-size: 50px;
+    text-align: center ;
+}
+
+#wordDisplay{
+    font-family: "Indie Flower", Arial;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(20%, 200%);
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(20%, 150%);
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.key {
+    font-family: "Indie Flower", Arial;
+    background-color: #40e0d0;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
