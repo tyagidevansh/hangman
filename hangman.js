@@ -42,10 +42,12 @@ function displayDashes() {
 
 function updateText(keyText) {
     const oldWord = displayWord;
+    let ret = false;
     let displayWordArray = displayWord.split('');
     for (let i = 0; i < currentWord.length; i++) {
         if (currentWord.charAt(i) == keyText) {
             displayWordArray[i] = keyText;
+            ret = true;
         }
     }
     displayWord = displayWordArray.join('');
@@ -55,6 +57,7 @@ function updateText(keyText) {
     }
     console.log(displayWord);
     wordDisplay.textContent = displayWord;
+    return ret;
 }
 
 function updateHangman() {
@@ -64,12 +67,25 @@ function updateHangman() {
 
 function checkWin() {
     if (displayWord === currentWord) {
-        console.log("You Win"); 
+        displayWord = "You Win!!! \n Let's Play Again";
+        wordDisplay.textContent = displayWord;
         setTimeout(() => {
             location.reload();
-        }, 3000);    
+        }, 5000);    
     } else if (incorrectAttempts >= 6) {
-        console.log("You Lose");
+        displayWord = "You Lose:( \n Try Again?";
+        wordDisplay.textContent = displayWord;
+        setTimeout(() => {
+            location.reload();
+        }, 5000);
+    }
+}
+
+function changeColor(key, valid) {
+    if (valid) {
+        key.classList.add("clicked-valid");
+    } else {
+        key.classList.add("clicked-invalid");
     }
 }
 
@@ -80,7 +96,8 @@ keys.forEach(key => {
     key.addEventListener('click', () => {
         const keyText = key.textContent;
         console.log(keyText);
-        updateText(keyText);
+        let valid = updateText(keyText);
+        changeColor(key, valid);
         checkWin();
     });
 });

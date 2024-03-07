@@ -65,3 +65,13 @@ body {
 .key:active {
     background-color: #1e7368;
 }
+
+.clicked-invalid {
+    background-color: #ff0000;
+    color: #ffffff; 
+}
+
+.clicked-valid {
+    background-color: rgb(6, 192, 6);
+    color: #ffffff;
+}
