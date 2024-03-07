@@ -1,6 +1,7 @@
 let words = [];
 let currentWord = '';
 let displayWord = '';
+let incorrectAttempts = 0;
 
 function fetchWords() {
     fetch('words.csv')
@@ -40,6 +41,7 @@ function displayDashes() {
 }
 
 function updateText(keyText) {
+    const oldWord = displayWord;
     let displayWordArray = displayWord.split('');
     for (let i = 0; i < currentWord.length; i++) {
         if (currentWord.charAt(i) == keyText) {
@@ -47,8 +49,17 @@ function updateText(keyText) {
         }
     }
     displayWord = displayWordArray.join('');
+    if (oldWord == displayWord) {
+        incorrectAttempts++;
+        updateHangman();
+    }
     console.log(displayWord);
     wordDisplay.textContent = displayWord;
+}
+
+function updateHangman() {
+    const hangmanImage = document.getElementById('hangman_image');
+    hangmanImage.src = `graphics/Hangman-${incorrectAttempts}.png`;
 }
 
 function checkWin() {
@@ -57,6 +68,8 @@ function checkWin() {
         setTimeout(() => {
             location.reload();
         }, 3000);    
+    } else if (incorrectAttempts >= 6) {
+        console.log("You Lose");
     }
 }
 
